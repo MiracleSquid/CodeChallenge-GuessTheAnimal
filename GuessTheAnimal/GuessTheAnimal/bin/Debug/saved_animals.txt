@@ -1,0 +1,2 @@
+Pig,Noun:four legs,Adjective:a mammal,Adjective:pink,Verb:oink
+Donkey,Noun:four legs,Adjective:a mammal,Adjective:grey,Verb:bray
