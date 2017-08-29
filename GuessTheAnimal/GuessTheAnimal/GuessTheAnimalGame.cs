@@ -1,12 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace GuessTheAnimal
 {
-    class GuessTheAnimalGame
+    internal class GuessTheAnimalGame
     {
         public AnimalFact CurrentAnimalQuestion;
         public GamePhase CurrentGamePhase;
@@ -113,16 +111,12 @@ namespace GuessTheAnimal
 
         private bool NeedMoreAnimalFacts()
         {
-            return _possibleAnimals.Animals.Count() > 1;
+            return _possibleAnimals.Animals.Count > 1;
         }
 
         private bool IsAnimalUnknown()
         {
-            if (_possibleAnimals.Animals.Any() == false)
-            {
-                return true;
-            }
-            return false;
+            return _possibleAnimals.Animals.Any() == false;
         }
 
         private string GetSuccessOrFailReaction()
@@ -140,14 +134,7 @@ namespace GuessTheAnimal
 
         private string GetNextAnimalQuestion()
         {
-            var possibleFacts = new List<AnimalFact>();
-            foreach (var animal in _possibleAnimals.Animals)
-            {
-                foreach(var fact in animal.Facts)
-                {
-                    possibleFacts.Add(fact);
-                }
-            }
+            var possibleFacts = _possibleAnimals.Animals.SelectMany(animal => animal.Facts).ToList();
             possibleFacts = possibleFacts.Where(newFact => _askedAnimalQuestions.Any(askedFact => askedFact == newFact) == false).Distinct().ToList();
             CurrentAnimalQuestion = possibleFacts.FirstOrDefault();
             return ConstructQuestionFromFact(CurrentAnimalQuestion);
@@ -156,7 +143,7 @@ namespace GuessTheAnimal
         public string ConstructQuestionFromFact(AnimalFact fact)
         {
             string prefix;
-            string suffix = "";
+            var suffix = "";
             switch (fact.CurrentWordType)
             {
                 case AnimalFact.WordType.Adjective:
@@ -178,8 +165,8 @@ namespace GuessTheAnimal
 
         public string GetAnimalGuess()
         {
-            string guessedAnimal = _possibleAnimals.Animals.FirstOrDefault().Name;
-            string aOrAn = "aeiouAEIOU".IndexOf(guessedAnimal.Substring(0, 1)) >= 0 ? "an" : "a";
+            var guessedAnimal = _possibleAnimals.Animals.FirstOrDefault()?.Name;
+            var aOrAn = "aeiouAEIOU".IndexOf(guessedAnimal.Substring(0, 1)) >= 0 ? "an" : "a";
             return $"Is your animal {aOrAn} {guessedAnimal}?";
         }
     }

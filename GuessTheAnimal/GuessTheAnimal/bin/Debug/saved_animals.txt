@@ -2,3 +2,10 @@
 Pig,Adjective:pink,Adjective:fat,Noun:a curly tail,Noun:four legs,Verb:oink
 
 Chicken,Adjective:white,Noun:two legs,Verb:cockadoodledoo
+Snake,Adjective:green,Adjective:venomous,Adjective:scaley,Noun:zero legs,Noun:a forked tongue,Verb:hiss
+Lion,Adjective:yellow,Adjective:brown,Noun:a mane,Verb:roar,Verb:eat meat,Verb:live in Africa
+Donkey,Adjective:grey,Noun:hooves,Verb:bray
+Duck,Adjective:a bird,Adjective:brown,Adjective:yellow,Adjective:white,Noun:a bill,Noun:webbed feet,Noun:two legs,Noun:wings,Verb:quack,Verb:swim,Verb:eat bread
+Elephant,Adjective:grey,Adjective:big,Noun:a trunk,Noun:big ears,Noun:tusks,Verb:trumpets
+Cow,Adjective:white,Adjective:brown,Noun:udders,Noun:horns,Noun:spots,Verb:moo
+Dog,Adjective:furry,Noun:a cold nose,Noun:four legs,Noun:a tail,Verb:woof

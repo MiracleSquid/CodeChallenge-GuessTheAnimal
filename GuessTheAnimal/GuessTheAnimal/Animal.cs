@@ -2,16 +2,14 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace GuessTheAnimal
 {
-    class Animal
+    internal class Animal
     {
         public string Name;
         public List<AnimalFact> Facts;
-        string _fileName = "saved_animals.txt";
+        private const string FileName = "saved_animals.txt";
 
         public Animal()
         {
@@ -26,14 +24,11 @@ namespace GuessTheAnimal
 
         public void WriteAnimalToFile()
         {
-            using (StreamWriter writer = File.AppendText(_fileName))
+            using (var writer = File.AppendText(FileName))
             {
                 var animalAsString = $"{Name}";
 
-                foreach (var fact in Facts)
-                {
-                    animalAsString = $"{animalAsString},{fact.ToColonSeparatedString()}";
-                }
+                animalAsString = Facts.Aggregate(animalAsString, (current, fact) => $"{current},{fact.ToColonSeparatedString()}");
                 writer.WriteLine($"{animalAsString}");
             }
         }
@@ -42,7 +37,7 @@ namespace GuessTheAnimal
         {
             var newFact = fact.Split(':');
             AnimalFact.WordType newFactWordType;
-            if(newFact.Count()==2 && Enum.TryParse(newFact[0], out newFactWordType))
+            if(newFact.Length==2 && Enum.TryParse(newFact[0], out newFactWordType))
             {
                 Facts.Add(new AnimalFact(newFactWordType, newFact[1]));
             }
