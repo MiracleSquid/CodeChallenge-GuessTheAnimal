@@ -26,15 +26,15 @@ namespace GuessTheAnimal
 
         public void WriteAnimalToFile()
         {
-            using (StreamWriter writer = new StreamWriter(_fileName))
+            using (StreamWriter writer = File.AppendText(_fileName))
             {
-                var animalAsString = "{Name}";
+                var animalAsString = $"{Name}";
 
                 foreach (var fact in Facts)
                 {
                     animalAsString = $"{animalAsString},{fact.ToColonSeparatedString()}";
                 }
-                writer.Write($"\n{animalAsString}");
+                writer.WriteLine($"{animalAsString}");
             }
         }
 
