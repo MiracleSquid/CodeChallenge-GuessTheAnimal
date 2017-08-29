@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,6 +11,7 @@ namespace GuessTheAnimal
     {
         public string Name;
         public List<AnimalFact> Facts;
+        string _fileName = "saved_animals.txt";
 
         public Animal()
         {
@@ -24,7 +26,16 @@ namespace GuessTheAnimal
 
         public void WriteAnimalToFile()
         {
-            
+            using (StreamWriter writer = new StreamWriter(_fileName))
+            {
+                var animalAsString = "{Name}";
+
+                foreach (var fact in Facts)
+                {
+                    animalAsString = $"{animalAsString},{fact.ToColonSeparatedString()}";
+                }
+                writer.Write($"\n{animalAsString}");
+            }
         }
 
         public void AddFactByColonSeparatedString(string fact)

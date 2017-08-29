@@ -46,5 +46,10 @@ namespace GuessTheAnimal
             return false;
         }
 
+        public string ToColonSeparatedString()
+        {
+            return $"{CurrentWordType.ToString()}:{Value}";
+        }
+
     }
 }

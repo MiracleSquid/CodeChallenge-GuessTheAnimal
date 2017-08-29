@@ -75,7 +75,7 @@ namespace GuessTheAnimal
                             CurrentFactType = AnimalFact.WordType.Verb;
                             break;
                         case AnimalFact.WordType.Verb:
-                            
+                            NewAnimal.WriteAnimalToFile();
                             return true;
                         default:
                             throw new ArgumentException("Invalid Word Type");
